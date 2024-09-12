@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include <regex>
 using namespace std;
 
 //预处理
@@ -9,6 +10,9 @@ void pretreatment();
 
 //分句
 map<string, list<string>>& divideArticle(const string filepath);
+
+//拆分自然段
+list<string>& divideParagraph(const string& str, const string& seperator);
 
 //建立倒排索引
 map<string, list<string>>& make7CharMap(const map<string, list<string>>& sentences);
