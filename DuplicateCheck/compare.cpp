@@ -83,18 +83,18 @@ int LCS(const string& originText, const string& checkSen)
 			{
 				table[i][j] = max(table[i - 1][j], table[i][j - 1]);
 			}
-			cout << table[i][j] << " ";
+			//cout << table[i][j] << " ";
 		}
-		cout << endl;
+		//cout << endl;
 	}
-	for (size_t i = 0; i < checkSenCharCount + 1; i++)
+	/*for (size_t i = 0; i < checkSenCharCount + 1; i++)
 	{
 		for (size_t j = 0; j < originTextCharCount + 1; j++)
 		{
 			cout << table[i][j] << " ";
 		}
 		cout << endl;
-	}
+	}*/
 	int sameCount = table[checkSenCharCount][originTextCharCount];
 	//ÊÍ·Å¿Õ¼ä
 	for (size_t i = 0; i < checkSenCharCount + 1; i++)

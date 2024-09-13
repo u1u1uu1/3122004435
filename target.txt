@@ -1,0 +1,2 @@
+目标文件【orig_0.8_add.txt】与原文件【orig.txt】相似度:0.86
+目标文件【orig_0.8_add.txt】与原文件【orig.txt】相似度:0.86

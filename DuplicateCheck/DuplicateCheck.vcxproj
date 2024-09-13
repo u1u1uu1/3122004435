@@ -129,11 +129,13 @@
     <ClCompile Include="function.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="message.cpp" />
+    <ClCompile Include="output.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compare.h" />
     <ClInclude Include="function.h" />
     <ClInclude Include="message.h" />
+    <ClInclude Include="output.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

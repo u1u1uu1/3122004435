@@ -7,10 +7,6 @@
 #include <set>
 #include <map>
 
-extern string originTextPath;
-extern string copyTextPath;
-extern string outputPath;
-
 using namespace std;
 
 //预处理
@@ -53,7 +49,7 @@ map<string, list<string>>& divideArticle(const string filepath)
 		//字句插入list
 		sentences->insert(sentences->end(), subSentences->begin(), subSentences->end());
 		delete subSentences;
-		cout << buf << endl;
+		//cout << buf << endl;
 	}
 	//
 	ifs.close();
@@ -135,7 +131,7 @@ map<string, message>& make7CharMap(const map<string, list<string>>& sentences)
 	return *index;
 }
 
-//滑动窗口截取7字索引
+//滑动窗口截取4字索引
 list<string>& cut7CharIndex(const string& subSen) 
 {
 	list<string> *sevenIndex = new list<string>;
