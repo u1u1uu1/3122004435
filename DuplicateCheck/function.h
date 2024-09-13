@@ -7,7 +7,7 @@
 using namespace std;
 
 //‘§¥¶¿Ì
-map<string, message>& pretreatment(const string& filepath);
+pair<map<string, list<string>>, map<string, message>>& pretreatment(const string& filepath);
 
 //∑÷æ‰
 map<string, list<string>>& divideArticle(const string filepath);

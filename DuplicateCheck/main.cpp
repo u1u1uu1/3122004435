@@ -1,5 +1,6 @@
 #include <iostream>
 #include "function.h"
+#include "compare.h"
 using namespace std;
 
 string originTextPath;
@@ -19,8 +20,14 @@ int main(int argc, char* argv[])
 	copyTextPath = argv[2];
 	outputPath = argv[3];
 	//预处理
-	map<string, message> originIndex = pretreatment(originTextPath);
-	map<string, message> checkIndex = pretreatment(copyTextPath);
+	pair<map<string, list<string>>, map<string, message>> *originIndex 
+		= &pretreatment(originTextPath);
+	pair<map<string, list<string>>, map<string, message>> *checkIndex 
+		= &pretreatment(copyTextPath);
 	//比较
+	float similarity = getSimilarity(*originIndex, *checkIndex);
 
+	//回收内存
+	delete &originIndex;
+	delete &checkIndex;
 }

@@ -14,11 +14,20 @@ extern string outputPath;
 using namespace std;
 
 //预处理
-map<string, message>& pretreatment(const string& filepath)
+//pair<分句map, 索引map>;
+pair<map<string, list<string>>, map<string, message>>& pretreatment(const string& filepath)
 {
-	map<string, list<string>> sentences = divideArticle(filepath);
-	map<string, message> *index = new map<string, message>(make7CharMap(sentences));
-	return *index;
+	//文章分成子句
+	map<string, list<string>> *sentences = &divideArticle(filepath);
+	//字句创建索引
+	map<string, message> *index = &make7CharMap(*sentences);
+	//字句和索引打包返回
+	pair<map<string, list<string>>, map<string, message>> *msg =
+		new pair<map<string, list<string>>, map<string, message>>(*sentences, *index);
+	//释放副本
+	delete sentences;
+	delete index;
+	return *msg;
 }
 
 //分句
@@ -40,9 +49,10 @@ map<string, list<string>>& divideArticle(const string filepath)
 		//按标点分为子句
 		//regex regexPattern(R"([：,；“”！？、]+|——)");
 		string punctuation = "，。“”——、";
-		list<string> subSentences = divideParagraph(sen, punctuation);
+		list<string> *subSentences = &divideParagraph(sen, punctuation);
 		//字句插入list
-		sentences->insert(sentences->end(), subSentences.begin(), subSentences.end());
+		sentences->insert(sentences->end(), subSentences->begin(), subSentences->end());
+		delete subSentences;
 		cout << buf << endl;
 	}
 	//
@@ -112,14 +122,15 @@ map<string, message>& make7CharMap(const map<string, list<string>>& sentences)
 	map<string, message> *index = new map<string, message>();
 	for(auto it = subSen.begin(); it != end; it++)
 	{
-		list<string> senList = cut7CharIndex(*it);
+		list<string> *senList = &cut7CharIndex(*it);
 		message msg(articleName, *it);
-		auto slEnd = senList.end();
-		for (auto slIt = senList.begin(); slIt != slEnd; slIt++)
+		auto slEnd = senList->end();
+		for (auto slIt = senList->begin(); slIt != slEnd; slIt++)
 		{
 			pair<string, message> p(*slIt, msg);
 			index->insert(p);
 		}
+		delete senList;
 	}
 	return *index;
 }
@@ -128,17 +139,18 @@ map<string, message>& make7CharMap(const map<string, list<string>>& sentences)
 list<string>& cut7CharIndex(const string& subSen) 
 {
 	list<string> *sevenIndex = new list<string>;
+	int indexCharCount = 4;
 	int ansiChCharSize = 2;
 	//小于等于7个字直接返回
-	if (subSen.size() <= 7 * ansiChCharSize)
+	if (subSen.size() <= indexCharCount * ansiChCharSize)
 	{
 		sevenIndex->push_back(subSen);
 		return *sevenIndex;
 	}
 	//滑动窗口截取子串
-	for (int i = 0; i < subSen.size() - 7 * ansiChCharSize; i += ansiChCharSize)
+	for (int i = 0; i < subSen.size() - indexCharCount * ansiChCharSize; i += ansiChCharSize)
 	{
-		sevenIndex->push_back(string(subSen).substr(i, 7 * ansiChCharSize));
+		sevenIndex->push_back(string(subSen).substr(i, indexCharCount * ansiChCharSize));
 	}
 	return *sevenIndex;
 }
