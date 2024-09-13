@@ -1,4 +1,5 @@
 #pragma once
+#include "message.h"
 #include <string>
 #include <map>
 #include <list>
@@ -19,4 +20,7 @@ list<string>& divideParagraph(const string& str, const string& seperator);
 void findPounIndex(const string& str, const string& seperator, set<int>& set);
 
 //建立倒排索引
-map<string, list<string>>& make7CharMap(const map<string, list<string>>& sentences);
+map<string, message>& make7CharMap(const map<string, list<string>>& sentences);
+
+//滑动窗口截取7字索引
+list<string>& cut7CharIndex(const string& subSen);

@@ -1,4 +1,5 @@
 #include "function.h"
+#include "message.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -14,8 +15,8 @@ using namespace std;
 //预处理
 void pretreatment()
 {
-	map<string, list<string>> sentences;
-	sentences = divideArticle(originTextPath);
+	map<string, list<string>> sentences = divideArticle(originTextPath);
+	map<string, message> index = make7CharMap(sentences);
 
 }
 
@@ -46,7 +47,10 @@ map<string, list<string>>& divideArticle(const string filepath)
 	//
 	ifs.close();
 	map<string, list<string>> *senMap = new map<string, list<string>>();
-	senMap->insert(pair<string, list<string>>(originTextPath, *sentences));
+	//从路径中取出文件名
+	string articleName(filepath);
+	articleName.erase(0, filepath.find_last_of("\\") + 1);
+	senMap->insert(pair<string, list<string>>(articleName, *sentences));
 	return *senMap;
 }
 
@@ -98,9 +102,42 @@ void findPounIndex(const string& str, const string& seperator, set<int>& set)
 }
 
 //建立倒排索引
-map<string, list<string>>& make7CharMap(const map<string, list<string>>& sentences)
+map<string, message>& make7CharMap(const map<string, list<string>>& sentences)
 {
-
-	map<string, list<string>> *index = new map<string, list<string>>();
+	string articleName(sentences.begin()->first);//取出文章名
+	list<string> subSen(sentences.begin()->second);//取出文章子句
+	//遍历子句，创建索引
+	auto end = subSen.end();
+	map<string, message> *index = new map<string, message>();
+	for(auto it = subSen.begin(); it != end; it++)
+	{
+		list<string> senList = cut7CharIndex(*it);
+		message msg(articleName, *it);
+		auto slEnd = senList.end();
+		for (auto slIt = senList.begin(); slIt != slEnd; slIt++)
+		{
+			pair<string, message> p(*slIt, msg);
+			index->insert(p);
+		}
+	}
 	return *index;
+}
+
+//滑动窗口截取7字索引
+list<string>& cut7CharIndex(const string& subSen) 
+{
+	list<string> *sevenIndex = new list<string>;
+	int ansiChCharSize = 2;
+	//小于等于7个字直接返回
+	if (subSen.size() <= 7 * ansiChCharSize)
+	{
+		sevenIndex->push_back(subSen);
+		return *sevenIndex;
+	}
+	//滑动窗口截取子串
+	for (int i = 0; i < subSen.size() - 7 * ansiChCharSize; i += ansiChCharSize)
+	{
+		sevenIndex->push_back(string(subSen).substr(i, 7 * ansiChCharSize));
+	}
+	return *sevenIndex;
 }
