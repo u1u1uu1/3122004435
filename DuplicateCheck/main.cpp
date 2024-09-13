@@ -8,6 +8,7 @@ string originTextPath;
 string copyTextPath;
 string outputPath;
 
+
 int main(int argc, char* argv[]) 
 {
 	//输入参数错误，程序退出
