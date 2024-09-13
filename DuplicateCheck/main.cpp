@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "function.h"
 using namespace std;
@@ -19,6 +18,6 @@ int main(int argc, char* argv[])
 	originTextPath = argv[1];
 	copyTextPath = argv[2];
 	outputPath = argv[3];
-	pretreatment();
+	map<string, message> index = pretreatment(originTextPath);
 	
 }

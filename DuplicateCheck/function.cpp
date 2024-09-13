@@ -13,11 +13,11 @@ extern string outputPath;
 using namespace std;
 
 //‘§¥¶¿Ì
-void pretreatment()
+map<string, message>& pretreatment(const string& filepath)
 {
-	map<string, list<string>> sentences = divideArticle(originTextPath);
-	map<string, message> index = make7CharMap(sentences);
-
+	map<string, list<string>> sentences = divideArticle(filepath);
+	map<string, message> *index = new map<string, message>(make7CharMap(sentences));
+	return *index;
 }
 
 //∑÷æ‰
