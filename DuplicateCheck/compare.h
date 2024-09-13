@@ -12,3 +12,6 @@ float getSimilarity(const pair<map<string, list<string>>, map<string, message>>&
 
 //定义是否抄袭
 bool isCopied(const string& originText, const string& checkSen);
+
+//查找公共字字数
+int LCS(const string& originText, const string& checkSen);
