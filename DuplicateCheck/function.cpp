@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include <set>
+#include <map>
 
 extern string originTextPath;
 extern string copyTextPath;
