@@ -5,3 +5,4 @@
 目标文件【orig_0.8_dis_1.txt】与原文件【orig.txt】相似度:0.96
 目标文件【orig_0.8_dis_10.txt】与原文件【orig.txt】相似度:0.75
 目标文件【orig_0.8_dis_15.txt】与原文件【orig.txt】相似度:0.35
+目标文件【orig_0.8_dis_15.txt】与原文件【orig.txt】相似度:0.35
