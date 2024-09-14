@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.35116.124
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DuplicateCheck", "DuplicateCheck\DuplicateCheck.vcxproj", "{84174B91-FED2-4401-9E9F-D4C237A8ADEF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functionTest", "functionTest\functionTest.vcxproj", "{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{84174B91-FED2-4401-9E9F-D4C237A8ADEF}.Release|x64.Build.0 = Release|x64
 		{84174B91-FED2-4401-9E9F-D4C237A8ADEF}.Release|x86.ActiveCfg = Release|Win32
 		{84174B91-FED2-4401-9E9F-D4C237A8ADEF}.Release|x86.Build.0 = Release|Win32
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Debug|x64.ActiveCfg = Debug|x64
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Debug|x64.Build.0 = Debug|x64
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Debug|x86.ActiveCfg = Debug|Win32
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Debug|x86.Build.0 = Debug|Win32
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Release|x64.ActiveCfg = Release|x64
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Release|x64.Build.0 = Release|x64
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Release|x86.ActiveCfg = Release|Win32
+		{F81F60BE-DD4D-4CA5-B949-0BCCBD95310C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

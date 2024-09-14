@@ -137,6 +137,11 @@ list<string>& cut7CharIndex(const string& subSen)
 	list<string> *sevenIndex = new list<string>;
 	int indexCharCount = 4;
 	int ansiChCharSize = 2;
+	//空字符串直接返回
+	if (subSen.size() == 0)
+	{
+		return *sevenIndex;
+	}
 	//小于等于7个字直接返回
 	if (subSen.size() <= indexCharCount * ansiChCharSize)
 	{
@@ -144,7 +149,7 @@ list<string>& cut7CharIndex(const string& subSen)
 		return *sevenIndex;
 	}
 	//滑动窗口截取子串
-	for (int i = 0; i < subSen.size() - indexCharCount * ansiChCharSize; i += ansiChCharSize)
+	for (int i = 0; i <= subSen.size() - indexCharCount * ansiChCharSize; i += ansiChCharSize)
 	{
 		sevenIndex->push_back(string(subSen).substr(i, indexCharCount * ansiChCharSize));
 	}
